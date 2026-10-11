@@ -196,6 +196,10 @@ public:
         }
     }
 
+    bool ShouldClose() const override {
+        return false;
+    }
+
     void* GetProcAddress(const char* name) override {
         if (bundle_ != nullptr) {
             CFStringRef symbol = CFStringCreateWithCString(kCFAllocatorDefault, name, kCFStringEncodingUTF8);

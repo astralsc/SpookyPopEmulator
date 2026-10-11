@@ -28,8 +28,8 @@ Before building or running the emulator, you must provide the original game file
 ### Linux Installation
 
 ```bash
-# For Ubuntu: sudo apt install build-essential cmake git curl unzip zlib1g-dev libboost-all-dev
-# For Fedora: sudo dnf install gcc gcc-c++ make cmake git curl unzip zlib-devel boost-devel
+# For Ubuntu: sudo apt install build-essential cmake git curl unzip zlib1g-dev libboost-all-dev libegl1-mesa-dev libgles2-mesa-dev libx11-dev
+# For Fedora: sudo dnf install gcc gcc-c++ make cmake git curl unzip zlib-devel boost-devel mesa-libEGL-devel mesa-libGLES-devel libX11-devel
 
 # Clone Dynarmic
 rm -rf extern/dynarmic
@@ -107,6 +107,10 @@ bash ./scripts/build_linux.sh
 The build script accepts `BUILD_DIR`, `BUILD_TYPE`, and `BUILD_JOBS` environment
 variables to customize the build directory, CMake configuration, and parallel
 job count.
+
+Linux graphics use EGL, OpenGL ES 2, and an X11 display (XWayland works for
+Wayland desktops). On Debian/Ubuntu, install `libegl1-mesa-dev`,
+`libgles2-mesa-dev`, and `libx11-dev` in addition to the build dependencies.
 
 ## License
 

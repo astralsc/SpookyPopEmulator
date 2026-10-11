@@ -3503,7 +3503,8 @@ void Emulator::ContinueUIApplicationMain() {
 }
 
 void Emulator::RunUIApplicationLoop() {
-    while (!saw_exit_ && total_ticks_left_ > 0) {
+    while (!saw_exit_ && total_ticks_left_ > 0
+        && (runtime_->host_gl == nullptr || !runtime_->host_gl->ShouldClose())) {
         if (runtime_->host_gl != nullptr && runtime_->host_gl->IsSupported()) {
             runtime_->host_gl->PumpEvents();
         }

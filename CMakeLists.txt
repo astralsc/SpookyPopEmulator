@@ -86,6 +86,13 @@ if (ANDROID)
     target_sources(spookypop_loader PRIVATE src/graphics/host_gl_backend_android.cpp)
 endif()
 
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    find_package(X11 REQUIRED)
+    find_library(EGL_LIBRARY NAMES EGL REQUIRED)
+    target_sources(spookypop_loader PRIVATE src/graphics/host_gl_backend_linux.cpp)
+    target_link_libraries(spookypop_loader PRIVATE X11::X11 ${EGL_LIBRARY} ${CMAKE_DL_LIBS})
+endif()
+
 target_include_directories(spookypop_loader PRIVATE src extern extern/sqlite3)
 
 # Bundled SQLite3 amalgamation — real database support

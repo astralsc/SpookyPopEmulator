@@ -273,6 +273,10 @@ public:
 
     void PumpEvents() override {}
 
+    bool ShouldClose() const override {
+        return false;
+    }
+
     void* GetProcAddress(const char* name) override {
         if (name == nullptr) {
             return nullptr;

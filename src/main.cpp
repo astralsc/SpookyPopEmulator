@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
     bool run_initializers = true;
     bool run_main = true;
     bool trace_shims = false;
-    std::uint64_t tick_budget = 50'000'000;
+    std::uint64_t tick_budget = 1'000'000'000'000ULL;
 
     for (int i = 1; i < argc; ++i) {
         const std::string_view arg(argv[i]);

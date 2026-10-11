@@ -16,6 +16,7 @@ public:
     virtual void MakeCurrent() = 0;
     virtual void Present() = 0;
     virtual void PumpEvents() = 0;
+    virtual bool ShouldClose() const = 0;
     virtual void* GetProcAddress(const char* name) = 0;
 };
 

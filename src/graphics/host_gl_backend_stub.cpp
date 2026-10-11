@@ -15,6 +15,9 @@ public:
     void MakeCurrent() override {}
     void Present() override {}
     void PumpEvents() override {}
+    bool ShouldClose() const override {
+        return false;
+    }
 
     void* GetProcAddress(const char*) override {
         return nullptr;
@@ -23,7 +26,7 @@ public:
 
 }  // namespace
 
-#if !defined(__APPLE__) && !defined(__ANDROID__)
+#if !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__linux__)
 std::unique_ptr<HostGLBackend> CreateHostGLBackend() {
     return std::make_unique<StubHostGLBackend>();
 }
