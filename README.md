@@ -28,6 +28,8 @@ Before building or running the emulator, you must provide the original game file
 ### Linux Installation
 
 ```bash
+# You need to install build-essential cmake git curl unzip zlib1g-dev libboost-all-dev
+
 # Clone Dynarmic
 rm -rf extern/dynarmic
 git clone https://github.com/lioncash/dynarmic.git extern/dynarmic
@@ -51,7 +53,7 @@ rm -rf extern/stb
 git clone https://github.com/nothings/stb.git extern/stb
 
 # Build
-mkdir build
+cmake -S . -B build
 cd build
 cmake ..
 cmake --build . -j$(nproc)
@@ -92,12 +94,18 @@ cd ~/SpookyPopEmulator-linux
 
 #### Linux
 
-An automated build script is provided to generate the Linux application. The following 
-commands install the required build tools and dependencies,
-then compile the Linux ARM64 library and package the application.
+Run the build script from the repository root after preparing the dependencies
+above. It builds a native Linux executable for the current machine architecture
+(including x86-64 or ARM64).
 
 ```bash
+bash ./scripts/build_linux.sh
+./build-linux/spookypop_loader --binary "external/Spooky Pop" --external external
 ```
+
+The build script accepts `BUILD_DIR`, `BUILD_TYPE`, and `BUILD_JOBS` environment
+variables to customize the build directory, CMake configuration, and parallel
+job count.
 
 ## License
 
