@@ -93,6 +93,13 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     target_link_libraries(spookypop_loader PRIVATE X11::X11 ${EGL_LIBRARY} ${CMAKE_DL_LIBS})
 endif()
 
+if (WIN32)
+    find_package(ZLIB REQUIRED)
+    target_sources(spookypop_loader PRIVATE src/graphics/host_gl_backend_windows.cpp)
+    target_compile_definitions(spookypop_loader PRIVATE NOMINMAX)
+    target_link_libraries(spookypop_loader PRIVATE ZLIB::ZLIB ws2_32 opengl32 gdi32 user32)
+endif()
+
 target_include_directories(spookypop_loader PRIVATE src extern extern/sqlite3)
 
 # Bundled SQLite3 amalgamation — real database support
@@ -107,7 +114,11 @@ if (NOT MSVC)
     target_compile_options(sqlite3_amalgamation PRIVATE -w)
 endif()
 
-target_link_libraries(spookypop_loader PRIVATE dynarmic z sqlite3_amalgamation)
+target_link_libraries(spookypop_loader PRIVATE dynarmic sqlite3_amalgamation)
+
+if (NOT WIN32)
+    target_link_libraries(spookypop_loader PRIVATE z)
+endif()
 
 if (APPLE)
     target_link_libraries(spookypop_loader PRIVATE "-framework Cocoa" "-framework OpenGL")

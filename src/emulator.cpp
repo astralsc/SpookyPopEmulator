@@ -1336,9 +1336,21 @@ std::string TranslateGlesShaderSource(std::string source) {
     static const std::regex precision_statement(R"(\bprecision\s+(?:lowp|mediump|highp)\s+(?:float|int)\s*;\s*)");
     static const std::regex qualifier(R"(\b(lowp|mediump|highp)\b\s*)");
 
-    source = std::regex_replace(source, precision_statement, "");
-    source = std::regex_replace(source, qualifier, "");
-    return source;
+    std::istringstream input(source);
+    std::string translated;
+    std::string line;
+    while (std::getline(input, line)) {
+        const auto first = line.find_first_not_of(" \t");
+        if (first == std::string::npos || line[first] != '#') {
+            line = std::regex_replace(line, precision_statement, "");
+            line = std::regex_replace(line, qualifier, "");
+        }
+        translated += line;
+        if (!input.eof()) {
+            translated.push_back('\n');
+        }
+    }
+    return translated;
 #endif
 }
 

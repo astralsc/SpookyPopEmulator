@@ -197,7 +197,9 @@ public:
     }
 
     bool ShouldClose() const override {
-        return false;
+        @autoreleasepool {
+            return window_ == nil || ![window_ isVisible];
+        }
     }
 
     void* GetProcAddress(const char* name) override {

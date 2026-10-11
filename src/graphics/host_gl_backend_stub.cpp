@@ -26,7 +26,7 @@ public:
 
 }  // namespace
 
-#if !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__linux__)
+#if !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__linux__) && !defined(_WIN32)
 std::unique_ptr<HostGLBackend> CreateHostGLBackend() {
     return std::make_unique<StubHostGLBackend>();
 }

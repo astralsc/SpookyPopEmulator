@@ -3,7 +3,7 @@
 #include <cstring>
 #include <stdexcept>
 
-#if !defined(__ANDROID__)
+#if defined(__linux__) || defined(__APPLE__)
 #include <execinfo.h>
 #endif
 
@@ -159,7 +159,7 @@ void GuestMemory::RequireWritable(const u32 address, const std::size_t size) con
             + Hex32(address) + " size=" + std::to_string(size)
             + " page=" + Hex32(page_base)
             + " tag=" + page->tag;
-#if !defined(__ANDROID__)
+#if defined(__linux__) || defined(__APPLE__)
         void* frames[16]{};
         const int frame_count = ::backtrace(frames, static_cast<int>(std::size(frames)));
         if (frame_count > 0) {
