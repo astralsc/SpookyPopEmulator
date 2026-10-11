@@ -28,7 +28,8 @@ Before building or running the emulator, you must provide the original game file
 ### Linux Installation
 
 ```bash
-# You need to install build-essential cmake git curl unzip zlib1g-dev libboost-all-dev
+# For Ubuntu: sudo apt install build-essential cmake git curl unzip zlib1g-dev libboost-all-dev
+# For Fedora: sudo dnf install gcc gcc-c++ make cmake git curl unzip zlib-devel boost-devel
 
 # Clone Dynarmic
 rm -rf extern/dynarmic
