@@ -25,7 +25,7 @@ Before building or running the emulator, you must provide the original game file
 
 ## Build Instructions
 
-### Linux
+### Linux Installation
 
 ```bash
 # Clone Dynarmic
@@ -56,8 +56,9 @@ cd build
 cmake ..
 cmake --build . -j$(nproc)
 ```
+### App Building
 
-### Android
+#### Android
 
 An automated build script is provided to generate the APK. The following
 commands install the Android SDK command-line tools and required SDK
@@ -87,6 +88,15 @@ export ANDROID_NDK_HOME="$ANDROID_SDK_ROOT/ndk/27.2.12479018"
 
 cd ~/SpookyPopEmulator-linux
 ./scripts/build_android_apk.sh
+```
+
+#### Linux
+
+An automated build script is provided to generate the Linux application. The following 
+commands install the required build tools and dependencies,
+then compile the Linux ARM64 library and package the application.
+
+```bash
 ```
 
 ## License
