@@ -100,7 +100,6 @@ above. It builds a native Linux executable for the current machine architecture
 (including x86-64 or ARM64).
 
 ```bash
-sed -i 's/\r$//' scripts/build_linux.sh
 bash ./scripts/build_linux.sh
 ./build-linux/spookypop_loader --binary "external/Spooky Pop" --external external
 ```

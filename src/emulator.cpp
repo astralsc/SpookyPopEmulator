@@ -1330,7 +1330,7 @@ std::filesystem::path ResolveBinaryPath(std::filesystem::path binary_path, const
 }
 
 std::string TranslateGlesShaderSource(std::string source) {
-#if defined(__ANDROID__)
+#if defined(__ANDROID__) || defined(__linux__)
     return source;
 #else
     static const std::regex precision_statement(R"(\bprecision\s+(?:lowp|mediump|highp)\s+(?:float|int)\s*;\s*)");
